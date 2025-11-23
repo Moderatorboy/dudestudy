@@ -6,7 +6,8 @@ function BatchCard({ b }) {
   return (
     <Link
       to={`/batch/${b.id}`}
-      className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.03] transition-all cursor-pointer group"
+      className="max-w-sm w-full mx-auto rounded-xl border border-slate-700 bg-slate-900 
+      shadow-md hover:shadow-xl hover:scale-[1.03] transition-all cursor-pointer overflow-hidden group"
     >
       {/* Image Box */}
       <div className="w-full h-48 bg-slate-800 flex items-center justify-center overflow-hidden relative">
@@ -39,41 +40,25 @@ export default function Home() {
   )
 
   return (
-    <div className="bg-slate-950 min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
-        <h1 className="text-2xl font-bold text-white">ModeStudy</h1>
-        <button className="px-4 py-2 rounded-lg border border-slate-700 text-white hover:bg-slate-800 transition">
-          Light Mode
-        </button>
-      </header>
-
+    <div className="bg-slate-950 min-h-screen px-4 py-6">
       {/* Search Bar */}
-      <div className="text-center my-6">
+      <div className="text-center mb-6">
         <input
           value={q}
           onChange={e => setQ(e.target.value)}
           placeholder="Search batch..."
-          className="w-full max-w-xl mx-auto px-5 py-3 rounded-full border border-slate-700 bg-slate-800 text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 outline-none"
+          className="w-full max-w-xl mx-auto px-5 py-3 rounded-full border border-slate-700 bg-slate-800 text-white placeholder-slate-400"
         />
       </div>
 
       <hr className="border-slate-700 my-6" />
 
       {/* Batch Grid */}
-      <main className="flex-1 px-6">
-        <h2 className="text-xl font-semibold text-white mb-4">Available Batches</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {batches.map(b => (
-            <BatchCard key={b.id} b={b} />
-          ))}
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="mt-10 py-6 border-t border-slate-800 text-center text-slate-400 text-sm">
-        © 2025 ModeStudy · About · Contact · Privacy
-      </footer>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {batches.map(b => (
+          <BatchCard key={b.id} b={b} />
+        ))}
+      </div>
     </div>
   )
 }
