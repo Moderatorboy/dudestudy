@@ -8,7 +8,7 @@ function BatchCard({ b }) {
       to={`/batch/${b.id}`}
       className="block bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300"
     >
-      <div className="bg-slate-800 flex items-center justify-center h-56">
+      <div className="bg-slate-800 flex items-center justify-center h-64">
         {b.photo ? (
           <img
             src={b.photo}
@@ -19,7 +19,7 @@ function BatchCard({ b }) {
           <span className="text-white text-xl font-semibold">{b.name}</span>
         )}
       </div>
-      <div className="p-4 bg-slate-900">
+      <div className="bg-slate-900 p-4">
         <h3 className="text-white font-bold text-center text-lg">{b.name}</h3>
       </div>
     </Link>
