@@ -1,6 +1,7 @@
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',   // 👈 Ye line add karni jaruri hai!
   content: [
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
