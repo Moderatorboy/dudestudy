@@ -6,15 +6,16 @@ function BatchCard({ b }) {
   return (
     <Link
       to={`/batch/${b.id}`}
-      className="max-w-sm w-full mx-auto bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.03] transition-all cursor-pointer"
+      className="max-w-sm w-full mx-auto rounded-xl border border-slate-700 bg-slate-900 
+      shadow-md hover:shadow-xl hover:scale-[1.03] transition-all cursor-pointer overflow-hidden group"
     >
       {/* Image Box */}
-      <div className="w-full h-48 bg-slate-800 flex items-center justify-center overflow-hidden">
+      <div className="w-full h-48 bg-slate-800 flex items-center justify-center overflow-hidden relative">
         {b.photo ? (
           <img
             src={b.photo}
             alt={b.name}
-            className="max-w-full max-h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+            className="max-w-full max-h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl"
           />
         ) : (
           <div className="text-slate-400 text-sm">No Image</div>
