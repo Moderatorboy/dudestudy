@@ -32,22 +32,6 @@ function BatchCard({ b }) {
   )
 }
 
-function MentorCard({ m }) {
-  return (
-    <div className="bg-slate-900 border border-slate-700 rounded-xl shadow-md hover:shadow-lg transition-all p-4 text-center">
-      <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border border-slate-700 mb-3">
-        <img
-          src={m.photo}
-          alt={m.name}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <h4 className="text-white font-semibold">{m.name}</h4>
-      <p className="text-slate-400 text-sm">{m.subject}</p>
-    </div>
-  )
-}
-
 export default function Home() {
   const [q, setQ] = useState('')
   const batches = SAMPLE.batches.filter(b =>
@@ -82,14 +66,6 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {batches.map(b => (
             <BatchCard key={b.id} b={b} />
-          ))}
-        </div>
-
-        {/* Mentor Gallery */}
-        <h2 className="text-xl font-semibold text-white mt-10 mb-4">Our Mentors</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {SAMPLE.mentors.map(m => (
-            <MentorCard key={m.id} m={m} />
           ))}
         </div>
       </main>
