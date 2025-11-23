@@ -9,12 +9,12 @@ export default function BatchPage() {
   if (!batch) return <div>Batch not found</div>
 
   return (
-    <div>
+    <div className="p-6">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="px-3 py-2 border rounded"
+          className="px-3 py-2 border rounded hover:bg-gray-100 dark:hover:bg-slate-800"
         >
           Back
         </button>
@@ -22,27 +22,29 @@ export default function BatchPage() {
       </div>
 
       {/* Subjects Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {batch.subjects.map(s => (
           <Link
             key={s.id}
             to={`/batch/${batchId}/subject/${s.id}`}
-            className="block border rounded-lg overflow-hidden"
+            className="block border rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-200"
           >
             {/* Image container */}
-            <div className="aspect-video bg-gray-100 dark:bg-slate-800">
-  {s.photo ? (
-    <img
-      src={s.photo}
-      alt={s.name}
-      className="w-full h-full object-cover"
-    />
-  ) : null}
-</div>
+            <div className="w-full h-40 overflow-hidden bg-gray-100 dark:bg-slate-800">
+              {s.photo && (
+                <img
+                  src={s.photo}
+                  alt={s.name}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
 
             {/* Text container */}
             <div className="p-3 bg-white dark:bg-slate-900">
-              <h3 className="font-bold text-center">{s.name}</h3>
+              <h3 className="font-bold text-center text-gray-800 dark:text-gray-100">
+                {s.name}
+              </h3>
             </div>
           </Link>
         ))}
