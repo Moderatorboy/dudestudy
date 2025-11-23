@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { SAMPLE } from '../data'
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
 
 function BatchCard({ b }) {
+  const navigate = useNavigate()
+
   return (
-    <Link
-      to={`/batch/${b.id}`}
-      className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-500 cursor-pointer group max-w-sm mx-auto my-6"
-    >
+    <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-500 max-w-sm mx-auto my-6">
+      
       {/* Image Box */}
       <div className="w-full h-64 bg-white/5 flex items-center justify-center overflow-hidden relative">
         {b.photo ? (
@@ -31,11 +31,14 @@ function BatchCard({ b }) {
         {b.subtitle && (
           <p className="text-white/70 text-sm mb-4">{b.subtitle}</p>
         )}
-        <button className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold text-sm shadow-lg hover:scale-105 transition transform duration-300">
+        <button
+          onClick={() => navigate(`/batch/${b.id}`)}
+          className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold text-sm shadow-lg hover:scale-105 transition transform duration-300"
+        >
           Explore Batch
         </button>
       </div>
-    </Link>
+    </div>
   )
 }
 
