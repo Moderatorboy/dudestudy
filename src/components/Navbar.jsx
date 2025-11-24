@@ -33,4 +33,8 @@ export default function Navbar() {
       </div>
     </nav>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 932cc39 (Add Navbar and ThemeToggle components)
