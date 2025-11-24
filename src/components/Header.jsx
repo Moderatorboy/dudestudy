@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 
-// Sample batch data
+// Sample batch data with public folder photos
 const batches = [
-  { id: 1, name: 'Physics Batch', photo: 'https://via.placeholder.com/150' },
-  { id: 2, name: 'Math Batch', photo: 'https://via.placeholder.com/150' },
-  { id: 3, name: 'Chemistry Batch', photo: 'https://via.placeholder.com/150' },
+  { id: 1, name: 'Physics Batch', photo: '/batch1.jpg' },
+  { id: 2, name: 'Math Batch', photo: '/nssir.jpg' },
+  { id: 3, name: 'Chemistry Batch', photo: '/skmsir.jpg' },
 ]
 
 export default function HomePage({ dark, setDark }) {
@@ -47,7 +47,7 @@ export default function HomePage({ dark, setDark }) {
         {filteredBatches.map(batch => (
           <div
             key={batch.id}
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 flex flex-col items-center transition-transform transform hover:scale-105"
+            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-4 flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-2xl"
           >
             <img
               src={batch.photo}
