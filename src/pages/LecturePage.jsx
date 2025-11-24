@@ -17,6 +17,8 @@ export default function LecturePage() {
     return !!obj[lectureId]
   })
 
+  const [activeTab, setActiveTab] = useState('notes')
+
   if (!lecture) return <div className="p-4">Lecture not found</div>
 
   function toggle() {
@@ -31,35 +33,58 @@ export default function LecturePage() {
     setDone(!done)
   }
 
+  const tabs = [
+    { key: 'notes', label: 'Notes' },
+    { key: 'dpp', label: 'DPP PDF' },
+    { key: 'quiz', label: 'Quiz' },
+    { key: 'sheets', label: 'Sheets' },
+  ]
+
   return (
-    <div className="p-4">
+    <div className="p-4 min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
       {/* Header */}
       <div className="flex items-center gap-4 mb-4">
-        <button onClick={() => navigate(-1)} className="px-3 py-2 border rounded">Back</button>
+        <button 
+          onClick={() => navigate(-1)} 
+          className="px-3 py-2 border rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+        >
+          Back
+        </button>
         <h2 className="text-xl font-bold">{lecture.title}</h2>
-        <div className="ml-auto" />
       </div>
 
       {/* Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Video Section */}
         <div className="md:col-span-2">
           <div className="aspect-video bg-black rounded overflow-hidden">
-            <iframe
-              src={lecture.video?.includes('?') 
-                ? lecture.video + '&autoplay=1' 
-                : lecture.video + '?autoplay=1'}
-              title={lecture.title}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              className="w-full h-full"
-              frameBorder="0"
-            />
+            {lecture.video ? (
+              <iframe
+                src={lecture.video.includes('?') 
+                  ? lecture.video + '&autoplay=1' 
+                  : lecture.video + '?autoplay=1'}
+                title={lecture.title}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="w-full h-full"
+                frameBorder="0"
+              />
+            ) : (
+              <div className="flex items-center justify-center h-64 text-gray-500">
+                Video not available
+              </div>
+            )}
           </div>
 
+          {/* Progress toggle */}
           <div className="flex items-center gap-3 mt-4">
             <label className="flex items-center gap-2">
-              <input type="checkbox" checked={done} onChange={toggle} />
+              <input 
+                type="checkbox" 
+                checked={done} 
+                onChange={toggle} 
+                className="w-4 h-4 accent-blue-600"
+              />
               <span>Mark as complete</span>
             </label>
             <Link
@@ -69,40 +94,84 @@ export default function LecturePage() {
               Back to chapter
             </Link>
           </div>
+
+          {/* Tabs below video */}
+          <div className="mt-6">
+            <div className="flex gap-3 mb-4 flex-wrap">
+              {tabs.map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`px-4 py-2 rounded border transition 
+                    ${activeTab === tab.key 
+                      ? 'bg-blue-600 text-white shadow-lg scale-105' 
+                      : 'bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab Content */}
+            {activeTab === 'notes' && (
+              <div className="space-y-3">
+                {chapter.notes?.map((note, i) => (
+                  <a key={i} href={note.file} target="_blank" rel="noopener noreferrer"
+                    className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md transition">
+                    {note.title}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'dpp' && (
+              <div className="space-y-3">
+                {chapter.dpp?.map((dpp, i) => (
+                  <a key={i} href={dpp.file} target="_blank" rel="noopener noreferrer"
+                    className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md transition">
+                    {dpp.title}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'quiz' && (
+              <div className="space-y-3">
+                {chapter.quizzes?.map((quiz, i) => (
+                  <div key={i} className="border rounded p-3 bg-white dark:bg-slate-900 shadow">
+                    <h4 className="font-semibold mb-2">{quiz.title}</h4>
+                    <ul className="list-disc ml-5 text-sm">
+                      {quiz.questions.map((q, j) => (
+                        <li key={j}>
+                          {q.q} <span className="text-gray-500">(Answer: {q.options[q.ans]})</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'sheets' && (
+              <div className="space-y-3">
+                {chapter.sheets?.map((sheet, i) => (
+                  <a key={i} href={sheet.link} target="_blank" rel="noopener noreferrer"
+                    className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md transition">
+                    {sheet.title}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Sidebar */}
         <aside className="border p-3 rounded bg-white dark:bg-slate-900 shadow">
           <h4 className="font-semibold mb-2">Quick Links</h4>
           <ul className="space-y-2 text-sm">
-            <li>
-              <strong>Notes:</strong>{' '}
-              {chapter?.notes?.[0]?.file ? (
-                <a href={chapter.notes[0].file} target="_blank" rel="noopener noreferrer" className="underline text-blue-600">
-                  {chapter.notes[0].title}
-                </a>
-              ) : (
-                'Not available'
-              )}
-            </li>
-            <li>
-              <strong>DPP:</strong>{' '}
-              {chapter?.dpp?.[0]?.file ? (
-                <a href={chapter.dpp[0].file} target="_blank" rel="noopener noreferrer" className="underline text-blue-600">
-                  {chapter.dpp[0].title}
-                </a>
-              ) : (
-                'Not available'
-              )}
-            </li>
-            <li>
-              <strong>Quiz:</strong>{' '}
-              {chapter?.quizzes?.length ? (
-                <Link to="#" className="underline text-blue-600">Start Quiz</Link>
-              ) : (
-                'Not available'
-              )}
-            </li>
+            <li><strong>Notes:</strong> {chapter?.notes?.[0]?.title || 'Not available'}</li>
+            <li><strong>DPP:</strong> {chapter?.dpp?.[0]?.title || 'Not available'}</li>
+            <li><strong>Quiz:</strong> {chapter?.quizzes?.length ? 'Available' : 'Not available'}</li>
           </ul>
         </aside>
       </div>
