@@ -19,7 +19,7 @@ export default function Header({ dark, setDark }) {
         <div className="flex justify-between h-16 items-center">
           {/* Logo / Site Name */}
           <Link to="/" className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-            ModeStudy
+            DUDE STUDY
           </Link>
 
           {/* Desktop Navigation */}
