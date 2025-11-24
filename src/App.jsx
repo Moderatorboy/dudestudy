@@ -8,8 +8,10 @@ import LecturePage from './pages/LecturePage'
 import Header from './components/Header'
 
 export default function App() {
+  // Global dark mode state
   const [dark, setDark] = useState(() => localStorage.getItem('ms-dark') === '1')
 
+  // Apply dark class to <html> on state change
   useEffect(() => {
     if (dark) document.documentElement.classList.add('dark')
     else document.documentElement.classList.remove('dark')
@@ -17,7 +19,8 @@ export default function App() {
   }, [dark])
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      {/* Pass dark state and setter to Header */}
       <Header dark={dark} setDark={setDark} />
       <main className="p-4 max-w-6xl mx-auto">
         <Routes>
