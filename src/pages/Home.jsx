@@ -2,46 +2,14 @@
 import React from "react"
 
 const batches = [
-  {
-    name: "CLASS 11TH",
-    banner: "Welcome Class 11th",
-    image: "/batch1.jpg",
-  },
-  {
-    name: "CLASS 12TH",
-    banner: "Welcome Class 12th",
-    image: "/batch2.jpg",
-  },
-  {
-    name: "FOUNDATION",
-    banner: "Welcome Foundation Batch",
-    image: "/nssir.jpg",
-  },
-  {
-    name: "NEET 2025",
-    banner: "Welcome NEET Warriors",
-    image: "/skmsir.jpg",
-  },
-  {
-    name: "JEE 2025",
-    banner: "Welcome JEE Champs",
-    image: "/vjsir.jpg",
-  },
-  {
-    name: "OLYMPIAD",
-    banner: "Welcome Olympiad Batch",
-    image: "/vgsir.jpg",
-  },
-  {
-    name: "NTSE",
-    banner: "Welcome NTSE Batch",
-    image: "/jpsir.jpg",
-  },
-  {
-    name: "BOARDS",
-    banner: "Welcome Board Prep",
-    image: "/boc.jpg",
-  },
+  { name: "CLASS 11TH", banner: "Welcome Class 11th", image: "/batch1.jpg" },
+  { name: "CLASS 12TH", banner: "Welcome Class 12th", image: "/batch2.jpg" },
+  { name: "FOUNDATION", banner: "Welcome Foundation Batch", image: "/skmsir.jpg" },
+  { name: "NEET 2025", banner: "Welcome NEET Warriors", image: "/nssir.jpg" },
+  { name: "JEE 2025", banner: "Welcome JEE Champs", image: "/jpsir.jpg" },
+  { name: "OLYMPIAD", banner: "Welcome Olympiad Batch", image: "/vjsir.jpg" },
+  { name: "NTSE", banner: "Welcome NTSE Batch", image: "/vgsir.jpg" },
+  { name: "BOARDS", banner: "Welcome Board Prep", image: "/boc.jpg" },
 ]
 
 export default function Home() {
@@ -63,9 +31,9 @@ export default function Home() {
         />
       </div>
 
-      {/* Fixed Container */}
+      {/* Batch Container */}
       <div className="max-w-7xl mx-auto px-4 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {batches.map((batch, index) => (
             <div
               key={index}
@@ -74,15 +42,11 @@ export default function Home() {
               <img
                 src={batch.image}
                 alt={batch.name}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover" // ✅ fixed height, no fullscreen
               />
               <div className="p-4">
-                <h2 className="text-lg font-bold text-slate-800 dark:text-white">
-                  {batch.name}
-                </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                  {batch.banner}
-                </p>
+                <h2 className="text-lg font-bold">{batch.name}</h2>
+                <p className="text-sm">{batch.banner}</p>
                 <div className="mt-2 text-orange-500 text-lg">🔥</div>
               </div>
             </div>
