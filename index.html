@@ -10,7 +10,7 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="ModeStudy - Empowering learners with interactive batches, mentors, and resources." />
-    <meta name="keywords" content="Education, ModeStudy, DUDE STUDY, NEET, JEE, Class 11, Class 12, Foundation" />
+    <meta name="keywords" content="Education, ModeStudy, NEET, JEE, Class 11, Class 12, Foundation" />
     <meta name="author" content="ModeStudy Team" />
 
     <!-- Theme Color for Mobile Browsers -->
@@ -18,9 +18,31 @@
 
     <!-- Preload Fonts (optional, if you use custom fonts) -->
     <!-- <link rel="preload" href="/fonts/YourFont.woff2" as="font" type="font/woff2" crossorigin /> -->
+
+    <!-- Tailwind base, components, utilities included via your main CSS -->
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
-  <body class="bg-white dark:bg-slate-900">
-    <div id="root"></div>
+  <body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-500">
+    <div id="root" class="min-h-screen flex flex-col"></div>
+
+    <!-- Tailwind gradient helper example -->
+    <div class="fixed bottom-5 right-5 w-16 h-16 rounded-full gradient-changing shadow-xl z-50"></div>
+
+    <!-- Main React entry -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Gradient Animation CSS (optional inline, otherwise in styles.css) -->
+    <style>
+      .gradient-changing {
+        background: linear-gradient(90deg, #06b6d4, #8b5cf6, #f472b6);
+        background-size: 300% 300%;
+        animation: gradientShift 8s ease infinite;
+      }
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+    </style>
   </body>
 </html>
