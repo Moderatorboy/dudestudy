@@ -1,8 +1,10 @@
+/* styles.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* small helpers */
+/* Gradient Animation Helper */
 .gradient-changing {
   background: linear-gradient(90deg, #06b6d4, #8b5cf6, #f472b6);
   background-size: 300% 300%;
@@ -10,8 +12,43 @@
   -moz-animation: gradientShift 8s ease infinite;
   animation: gradientShift 8s ease infinite;
 }
+
 @keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Premium card style helper */
+.card {
+  @apply p-6 rounded-2xl shadow-xl bg-gray-900 text-white;
+}
+
+/* Text helpers */
+.text-gradient {
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6, #f472b6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Button helpers */
+.btn-gradient {
+  @apply px-6 py-3 rounded-xl font-bold text-white shadow-lg transition-transform transform hover:scale-105;
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6, #f472b6);
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Loader helper */
+.loader {
+  @apply w-16 h-16 rounded-full border-4 border-t-4 border-gray-200 border-t-transparent animate-spin;
 }
