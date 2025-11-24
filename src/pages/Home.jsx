@@ -7,27 +7,32 @@ function BatchCard({ b }) {
   return (
     <Link
       to={`/batch/${b.id}`}
-      className="group relative bg-white/20 dark:bg-slate-900/30 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-transform duration-500 border border-transparent hover:border-gradient-to-r from-purple-400 via-pink-500 to-blue-500"
+      className="group relative block bg-white/20 dark:bg-slate-900/30 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-transform duration-500 border border-transparent hover:border-gradient-to-r from-purple-400 via-pink-500 to-blue-500"
     >
-      <div className="p-5 flex flex-col items-center">
+      <div className="flex flex-col md:flex-row items-center md:items-start p-6 gap-6">
+        {/* Large Banner Image */}
         {b.photo && (
-          <div className="w-32 h-32 overflow-hidden rounded-xl mb-4 shadow-lg">
+          <div className="w-full md:w-2/5 h-48 md:h-64 overflow-hidden rounded-xl shadow-lg">
             <img
               src={b.photo}
               alt={b.name}
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
           </div>
         )}
-        <h3 className="text-xl md:text-2xl font-bold text-center text-slate-900 dark:text-slate-100 mb-2">
-          {b.name}
-        </h3>
-        <p className="text-sm text-center text-gray-700 dark:text-gray-300 mb-4">
-          {b.description || 'Join this batch to level up your skills!'}
-        </p>
-        <button className="px-6 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white rounded-full hover:scale-105 transform transition-all duration-300 shadow-md">
-          Join Batch
-        </button>
+
+        {/* Text Content */}
+        <div className="flex-1 text-center md:text-left">
+          <h3 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 mb-2">
+            {b.name}
+          </h3>
+          <p className="text-md text-gray-700 dark:text-gray-300 mb-4">
+            {b.description || 'Join this batch to level up your skills!'}
+          </p>
+          <button className="px-6 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white rounded-full hover:scale-105 transform transition-all duration-300 shadow-md">
+            Join Batch
+          </button>
+        </div>
       </div>
     </Link>
   )
