@@ -22,32 +22,31 @@ export default function ChapterPage() {
   ]
 
   return (
-    <div>
+    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-6 py-8">
       {/* Header */}
-      <div className="relative mb-6 h-32 rounded-lg overflow-hidden bg-gradient-to-r from-pink-500 to-yellow-400 text-white shadow-lg">
-  {/* Centered Chapter Name */}
-  <div className="absolute inset-0 flex items-center justify-center">
-    <h2 className="text-3xl font-bold drop-shadow">{chapter.name}</h2>
-  </div>
-
-  {/* Back Button */}
-  <button
-    onClick={() => navigate(-1)}
-    className="absolute left-4 top-4 px-3 py-2 bg-white text-black rounded shadow"
-  >
-    Back
-  </button>
-</div>
+      <div className="relative mb-8 h-32 rounded-lg overflow-hidden bg-gradient-to-r from-pink-500 to-yellow-400 text-white shadow-lg">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h2 className="text-2xl md:text-3xl font-bold drop-shadow">{chapter.name}</h2>
+        </div>
+        <button
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+          className="absolute left-4 top-4 px-3 py-2 bg-white text-black rounded shadow hover:bg-gray-100"
+        >
+          Back
+        </button>
+      </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 flex-wrap">
+      <div className="flex gap-3 mb-6 flex-wrap">
         {tabs.map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2 rounded border ${
-              activeTab === tab.key ? 'bg-blue-600 text-white shadow-lg scale-105 transition' : 'bg-white dark:bg-slate-900'
-            }`}
+            className={`px-4 py-2 rounded border transition 
+              ${activeTab === tab.key 
+                ? 'bg-blue-600 text-white shadow-lg scale-105' 
+                : 'bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
           >
             {tab.label}
           </button>
@@ -61,14 +60,14 @@ export default function ChapterPage() {
             <Link
               key={index}
               to={`/batch/${batchId}/subject/${subjectId}/chapter/${chapterId}/lecture/${video.id}`}
-              className="w-full text-left flex gap-4 items-center border rounded-lg p-3 bg-white dark:bg-slate-900 shadow hover:bg-gray-100 dark:hover:bg-slate-800"
+              className="flex gap-4 items-center border rounded-lg p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md hover:scale-[1.02] transition"
             >
-              <div className="w-40 h-24 bg-gray-200 dark:bg-slate-800 overflow-hidden rounded">
+              <div className="w-32 sm:w-40 h-20 sm:h-24 bg-gray-200 dark:bg-slate-800 overflow-hidden rounded">
                 <img
-  src={video.photo || chapter.photo}
-  alt={video.title}
-  className="w-full h-full object-cover"
-/>
+                  src={video.photo || chapter.photo}
+                  alt={video.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="flex-1">
                 <h4 className="font-semibold text-base">{video.title}</h4>
@@ -89,7 +88,7 @@ export default function ChapterPage() {
               href={note.file}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:bg-gray-100 dark:hover:bg-slate-800"
+              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md hover:scale-[1.02] transition"
             >
               {note.title}
             </a>
@@ -105,7 +104,7 @@ export default function ChapterPage() {
               href={dpp.file}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:bg-gray-100 dark:hover:bg-slate-800"
+              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md hover:scale-[1.02] transition"
             >
               {dpp.title}
             </a>
@@ -121,7 +120,7 @@ export default function ChapterPage() {
               href={dpp.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:bg-gray-100 dark:hover:bg-slate-800"
+              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md hover:scale-[1.02] transition"
             >
               {dpp.title}
             </a>
@@ -132,12 +131,12 @@ export default function ChapterPage() {
       {activeTab === 'dppQuiz' && (
         <div className="space-y-3">
           {chapter.quizzes?.map((quiz, index) => (
-            <div key={index} className="border rounded p-3 bg-white dark:bg-slate-900 shadow">
+            <div key={index} className="border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md transition">
               <h4 className="font-semibold mb-2">{quiz.title}</h4>
-              <ul className="list-disc ml-5">
+              <ul className="list-disc ml-5 text-sm">
                 {quiz.questions.map((q, i) => (
                   <li key={i}>
-                    {q.q} (Answer: {q.options[q.ans]})
+                    {q.q} <span className="text-gray-500">(Answer: {q.options[q.ans]})</span>
                   </li>
                 ))}
               </ul>
@@ -154,7 +153,7 @@ export default function ChapterPage() {
               href={sheet.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:bg-gray-100 dark:hover:bg-slate-800"
+              className="block border rounded p-3 bg-white dark:bg-slate-900 shadow hover:shadow-md hover:scale-[1.02] transition"
             >
               {sheet.title}
             </a>
