@@ -18,7 +18,7 @@ const batches = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-      {/* Top Branding */}
+      {/* Branding */}
       <header className="py-6 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent bg-clip-text text-4xl font-bold animate-gradient-x">
         DUDE STUDY
       </header>
@@ -33,7 +33,7 @@ export default function Home() {
       </div>
 
       {/* Batch Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 pb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 pb-12">
         {batches.map((batch, index) => (
           <div
             key={index}
