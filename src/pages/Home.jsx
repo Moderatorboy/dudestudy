@@ -8,13 +8,15 @@ function BatchCard({ b }) {
       to={`/batch/${b.id}`}
       className="block border rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white dark:bg-slate-800"
     >
-      <div className="flex flex-col items-center justify-center p-4">
+      <div className="flex flex-col items-center justify-start p-4">
         {b.photo && (
-          <img
-            src={b.photo}
-            alt={b.name}
-            className="w-32 h-32 object-cover rounded-full mb-2"
-          />
+          <div className="w-full h-40 bg-gray-200 dark:bg-gray-700 mb-4">
+            <img
+              src={b.photo}
+              alt={b.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
         )}
         <h3 className="text-lg font-bold text-center text-slate-900 dark:text-slate-100">
           {b.name}
@@ -23,6 +25,7 @@ function BatchCard({ b }) {
     </Link>
   )
 }
+
 
 export default function Home() {
   const [q, setQ] = useState('')
