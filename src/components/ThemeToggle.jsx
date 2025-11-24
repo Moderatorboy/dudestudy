@@ -9,8 +9,4 @@ export default function ThemeToggle({ dark, setDark }) {
       {dark ? '☀️ Light Mode' : '🌙 Dark Mode'}
     </button>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 932cc39 (Add Navbar and ThemeToggle components)
