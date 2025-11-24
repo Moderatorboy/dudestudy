@@ -1,8 +1,8 @@
 module.exports = {
-  darkMode: 'class', // 'media' nahi, class use karna hai
+  darkMode: 'class', // ye **must** hai, 'media' nahi
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {},
   },
   plugins: [],
-};
+}
