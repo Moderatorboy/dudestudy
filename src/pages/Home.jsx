@@ -5,12 +5,12 @@ const batches = [
   {
     name: "CLASS 11TH",
     banner: "Welcome Class 11th",
-    image: "/images/class11.jpg", // Add your collage image here
+    image: "/images/batch1.jpg", // Add your collage image here
   },
   {
     name: "CLASS 12TH",
     banner: "Welcome Class 12th",
-    image: "/images/class12.jpg",
+    image: "/images/batch2.jpg",
   },
   // Add more batches as needed
 ]
