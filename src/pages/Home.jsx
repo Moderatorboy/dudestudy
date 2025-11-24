@@ -12,6 +12,36 @@ const batches = [
     banner: "Welcome Class 12th",
     image: "/batch2.jpg",
   },
+  {
+    name: "FOUNDATION",
+    banner: "Welcome Foundation Batch",
+    image: "/nssir.jpg",
+  },
+  {
+    name: "NEET 2025",
+    banner: "Welcome NEET Warriors",
+    image: "/skmsir.jpg",
+  },
+  {
+    name: "JEE 2025",
+    banner: "Welcome JEE Champs",
+    image: "/vjsir.jpg",
+  },
+  {
+    name: "OLYMPIAD",
+    banner: "Welcome Olympiad Batch",
+    image: "/vgsir.jpg",
+  },
+  {
+    name: "NTSE",
+    banner: "Welcome NTSE Batch",
+    image: "/jpsir.jpg",
+  },
+  {
+    name: "BOARDS",
+    banner: "Welcome Board Prep",
+    image: "/boc.jpg",
+  },
 ]
 
 export default function Home() {
@@ -33,9 +63,9 @@ export default function Home() {
         />
       </div>
 
-      {/* Batch Grid */}
-      <main className="px-6 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Fixed Container */}
+      <div className="max-w-7xl mx-auto px-4 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {batches.map((batch, index) => (
             <div
               key={index}
@@ -47,7 +77,7 @@ export default function Home() {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-xl font-bold text-slate-800 dark:text-white">
+                <h2 className="text-lg font-bold text-slate-800 dark:text-white">
                   {batch.name}
                 </h2>
                 <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
@@ -58,7 +88,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   )
 }
