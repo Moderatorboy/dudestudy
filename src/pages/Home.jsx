@@ -41,15 +41,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 dark:from-slate-900 dark:via-slate-700 dark:to-slate-500 transition-colors duration-500 p-6">
-      
+
       {/* Floating background shapes */}
       <div className="absolute top-[-50px] left-[-50px] w-72 h-72 bg-pink-400 rounded-full opacity-30 animate-pulse mix-blend-multiply"></div>
       <div className="absolute bottom-[-80px] right-[-80px] w-96 h-96 bg-blue-400 rounded-full opacity-30 animate-pulse mix-blend-multiply"></div>
 
-      {/* Animated Title */}
-      <h1 className="text-5xl md:text-6xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-gradient-x drop-shadow-lg">
-        DUDE STUDY
-      </h1>
+      {/* Hero Banner */}
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-xl shadow-lg text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-bold">Welcome Class 11th to Apni Kaksha 🔴 LIVE</h1>
+        <p className="text-lg mt-2">Your mentors are ready. Your journey begins now.</p>
+      </div>
 
       {/* Search Bar */}
       <div className="flex justify-center mb-10 relative">
@@ -66,10 +67,30 @@ export default function Home() {
       <div className="w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 mx-auto rounded mb-10 shadow-md"></div>
 
       {/* Batch Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {batches.map((b) => (
-          <BatchCard key={b.id} b={b} />
-        ))}
+      {batches.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {batches.map((b) => (
+            <BatchCard key={b.id} b={b} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-white py-10">
+          <p className="text-xl font-bold">🚀 Keep going! Your next chapter awaits.</p>
+          <p className="text-gray-200">No matching batch found — but your journey is just beginning.</p>
+        </div>
+      )}
+
+      {/* Mentor Gallery (Optional Dummy) */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold text-center text-white mb-6">Meet Your Mentors</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          {['Anurag Sir', 'Ravi Sir', 'Neha Ma’am', 'Amit Sir'].map((name, i) => (
+            <div key={i} className="text-center">
+              <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg mb-2"></div>
+              <p className="text-white font-semibold">{name}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
