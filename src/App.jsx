@@ -13,8 +13,10 @@ export default function App() {
 
   // Apply dark class to <html> on state change
   useEffect(() => {
-    if (dark) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
+    const html = document.documentElement
+    if (dark) html.classList.add('dark')
+    else html.classList.remove('dark')
+
     localStorage.setItem('ms-dark', dark ? '1' : '0')
   }, [dark])
 
