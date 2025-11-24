@@ -1,77 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ThemeToggle from './ThemeToggle'
-import { Link } from 'react-router-dom'
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
 
 export default function Header({ dark, setDark }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Courses', href: '/courses' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-  ]
-
   return (
-    <header className="bg-white dark:bg-slate-900 shadow-md fixed w-full z-50 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16 justify-between relative">
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <ThemeToggle dark={dark} setDark={setDark} />
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="ml-2 text-slate-900 dark:text-slate-100 focus:outline-none hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
-            >
-              {mobileMenuOpen ? <HiOutlineX className="h-6 w-6" /> : <HiOutlineMenu className="h-6 w-6" />}
-            </button>
-          </div>
-
-          {/* Center Logo */}
-          <Link
-            to="/"
-            className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-extrabold text-slate-900 dark:text-slate-100 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-300"
-          >
+    <header className="fixed w-full z-50 top-0 left-0 flex justify-center items-center py-6 pointer-events-none">
+      {/* Animated Gradient Box */}
+      <div className="relative pointer-events-auto">
+        <div className="absolute inset-0 rounded-xl animate-gradient bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 blur-lg opacity-70"></div>
+        <div className="relative px-8 py-4 bg-white dark:bg-slate-900 rounded-xl shadow-xl flex items-center justify-center">
+          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-text">
             DUDE STUDY
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 ml-auto">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="relative text-slate-900 dark:text-slate-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
-              >
-                <span className="after:block after:h-0.5 after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full absolute bottom-0 left-0"></span>
-                {item.name}
-              </Link>
-            ))}
+          </h1>
+          <div className="ml-4">
             <ThemeToggle dark={dark} setDark={setDark} />
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div
-        className={`md:hidden bg-white dark:bg-slate-900 overflow-hidden transition-all duration-300 ${
-          mobileMenuOpen ? 'max-h-96 py-4' : 'max-h-0 py-0'
-        }`}
-      >
-        <nav className="px-4 flex flex-col space-y-3">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              to={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-slate-900 dark:text-slate-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
-      </div>
+      {/* Tailwind Animations */}
+      <style>
+        {`
+          @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 5s ease infinite;
+          }
+          @keyframes text-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animate-text {
+            background-size: 200% 200%;
+            animation: text-gradient 4s ease infinite;
+          }
+        `}
+      </style>
     </header>
   )
 }
